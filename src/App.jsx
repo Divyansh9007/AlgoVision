@@ -31,7 +31,7 @@ const App = () => {
     },
     author: {
       "@type": "Person",
-      name: "Deven Wagh",
+      name: "Divyansh Pansari",
     },
     keywords:
       "algorithms, data structures, visualization, sorting, searching, graphs, dynamic programming, educational tool",
