@@ -12,17 +12,12 @@ const FAQ = () => {
       answer:
         "Algorithm Arena is an interactive platform designed for visualizing and learning about various algorithms and data structures through animated visualizations and real-time comparisons.",
     },
-    {
-      id: "race-mode",
-      question: "How does Race Mode work?",
-      answer:
-        "Race Mode allows you to select multiple algorithms and compare their performance in real time. You can see which algorithms complete faster and understand their efficiency differences visually.",
-    },
+
     {
       id: "supported-algos",
       question: "Which algorithms are supported?",
       answer:
-        "The platform currently supports sorting algorithms (Bubble, Merge, Quick, Heap Sort), searching algorithms (Linear, Binary, Jump Search), graph algorithms (BFS, DFS, Dijkstra's), and various other categories like dynamic programming and greedy algorithms.",
+        "The platform currently supports sorting algorithms (Bubble, Merge, Quick, Heap Sort), searching algorithms (Linear, Binary, Jump Search), and various other categories like dynamic programming.",
     },
     {
       id: "for-beginners",

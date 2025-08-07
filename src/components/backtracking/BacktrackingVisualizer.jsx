@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useBacktrackingStore from "../../store/backtrackingStore";
 import NQueensVisualizer from "./NQueensVisualizer";
-import SudokuVisualizer from "./SudokuVisualizer";
 
 const BacktrackingVisualizer = () => {
   const { algorithm } = useParams();
@@ -69,8 +68,7 @@ const BacktrackingVisualizer = () => {
     switch (algorithm) {
       case "n-queens":
         return <NQueensVisualizer />;
-      case "sudoku-solver":
-        return <SudokuVisualizer />;
+
       default:
         return (
           <div className="flex items-center justify-center h-64 text-xl text-white">
@@ -204,7 +202,7 @@ const BacktrackingVisualizer = () => {
   // Render bottom navigation controls for mobile and tablet
   const renderBottomControls = () => {
     if (!solutions.length && !steps.length) return null;
-    
+
     return (
       <div className="fixed bottom-0 left-0 right-0 z-40 p-3 border-t shadow-lg md:hidden bg-slate-800 border-slate-700">
         <div className="flex flex-col gap-3">
@@ -267,12 +265,16 @@ const BacktrackingVisualizer = () => {
       </div>
 
       {/* Main Content - Adjusted margins for mobile responsiveness */}
-      <div className={`flex-1 p-2 overflow-hidden sm:p-6 mt-36 sm:mt-32 md:mt-28 md:mb-0 ${hasBottomControls ? 'mb-24' : ''}`}>
+      <div
+        className={`flex-1 p-2 overflow-hidden sm:p-6 mt-36 sm:mt-32 md:mt-28 md:mb-0 ${
+          hasBottomControls ? "mb-24" : ""
+        }`}
+      >
         <div className="min-h-screen p-2 overflow-auto rounded-lg sm:p-4 bg-slate-900">
           {renderAlgorithmVisualizer()}
         </div>
       </div>
-      
+
       {/* Bottom Controls for Mobile/Tablet */}
       {renderBottomControls()}
     </div>

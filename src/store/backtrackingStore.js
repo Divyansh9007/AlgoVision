@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { nQueens, sudokuSolver } from "../algorithms/backtracking";
+import { nQueens } from "../algorithms/backtracking";
 
 const useBacktrackingStore = create((set, get) => ({
   // General state
@@ -17,7 +17,6 @@ const useBacktrackingStore = create((set, get) => ({
   currentStep: 0,
   steps: [],
 
-  // Sudoku specific state
   difficulty: "medium",
 
   // Setters and actions
@@ -49,7 +48,7 @@ const useBacktrackingStore = create((set, get) => ({
   setCellValue: (row, col, value) => {
     const { algorithm, board } = get();
 
-    if (algorithm !== "sudoku-solver" || !board || board.length !== 9) {
+    if (!board || board.length !== 9) {
       return;
     }
 
@@ -62,9 +61,6 @@ const useBacktrackingStore = create((set, get) => ({
   setDifficulty: (difficulty) => {
     set({ difficulty });
     const { algorithm } = get();
-    if (algorithm === "sudoku-solver") {
-      get().startAlgorithm(algorithm);
-    }
   },
 
   startAlgorithm: (algorithm) => {
@@ -83,24 +79,6 @@ const useBacktrackingStore = create((set, get) => ({
       set({
         algorithm,
         board: initialBoard,
-        solutions: [],
-        currentSolution: 0,
-        currentStep: 0,
-        steps: [],
-        isPlaying: false,
-        isPaused: false,
-        abortController: null,
-      });
-    } else if (algorithm === "sudoku-solver") {
-      const { difficulty } = get();
-
-      // Create initial board for Sudoku
-      // Negative values indicate "original" cells that can't be modified
-      const board = generateSudokuPuzzle(difficulty);
-
-      set({
-        algorithm,
-        board,
         solutions: [],
         currentSolution: 0,
         currentStep: 0,
@@ -130,20 +108,6 @@ const useBacktrackingStore = create((set, get) => ({
       // Reset everything except boardSize and algorithm
       set({
         board: initialBoard,
-        solutions: [],
-        currentSolution: 0,
-        currentStep: 0,
-        steps: [],
-        isPlaying: false,
-        isPaused: false,
-        abortController: null,
-      });
-    } else if (algorithm === "sudoku-solver") {
-      // Create a fresh board
-      const board = generateSudokuPuzzle(difficulty);
-
-      set({
-        board,
         solutions: [],
         currentSolution: 0,
         currentStep: 0,
@@ -210,59 +174,6 @@ const useBacktrackingStore = create((set, get) => ({
           console.log("Algorithm execution was aborted");
         } else {
           console.error("Error running N-Queens:", error);
-        }
-        set({ isPlaying: false });
-      }
-    } else if (algorithm === "sudoku-solver") {
-      try {
-        // Create a copy of the board to solve
-        const startingBoard = JSON.parse(JSON.stringify(get().board));
-
-        // Mark original cells with negative values to prevent modification
-        for (let i = 0; i < 9; i++) {
-          for (let j = 0; j < 9; j++) {
-            if (startingBoard[i][j] !== 0) {
-              startingBoard[i][j] = -startingBoard[i][j]; // Negative value
-            }
-          }
-        }
-
-        // Run the algorithm
-        const result = await sudokuSolver(
-          startingBoard,
-          (currentBoard, steps, solutions) => {
-            set((state) => ({
-              board: JSON.parse(JSON.stringify(currentBoard)),
-              steps: steps.map((step) => JSON.parse(JSON.stringify(step))),
-              solutions: solutions.map((sol) =>
-                JSON.parse(JSON.stringify(sol))
-              ),
-              currentStep: steps.length - 1,
-            }));
-          },
-          () => get().speed,
-          () => get().isPlaying && !get().isPaused,
-          abortController.signal
-        );
-
-        // After completion, set final state
-        if (!abortController.signal.aborted) {
-          set({
-            isPlaying: false,
-            currentStep: get().steps.length - 1,
-            currentSolution: get().solutions.length > 0 ? 0 : 0,
-          });
-
-          // If solutions found, display the first one
-          if (get().solutions.length > 0) {
-            get().showSolution(0);
-          }
-        }
-      } catch (error) {
-        if (error.name === "AbortError") {
-          console.log("Algorithm execution was aborted");
-        } else {
-          console.error("Error running Sudoku solver:", error);
         }
         set({ isPlaying: false });
       }
@@ -335,54 +246,5 @@ const useBacktrackingStore = create((set, get) => ({
     set({ isPaused: false, isPlaying: true });
   },
 }));
-
-// Helper function to generate Sudoku puzzles with different difficulties
-function generateSudokuPuzzle(difficulty) {
-  // Predefined puzzles of varying difficulty
-  const puzzles = {
-    easy: [
-      [5, 3, 0, 0, 7, 0, 0, 0, 0],
-      [6, 0, 0, 1, 9, 5, 0, 0, 0],
-      [0, 9, 8, 0, 0, 0, 0, 6, 0],
-
-      [8, 0, 0, 0, 6, 0, 0, 0, 3],
-      [4, 0, 0, 8, 0, 3, 0, 0, 1],
-      [7, 0, 0, 0, 2, 0, 0, 0, 6],
-
-      [0, 6, 0, 0, 0, 0, 2, 8, 0],
-      [0, 0, 0, 4, 1, 9, 0, 0, 5],
-      [0, 0, 0, 0, 8, 0, 0, 7, 9],
-    ],
-    medium: [
-      [0, 0, 0, 2, 6, 0, 7, 0, 1],
-      [6, 8, 0, 0, 7, 0, 0, 9, 0],
-      [1, 9, 0, 0, 0, 4, 5, 0, 0],
-
-      [8, 2, 0, 1, 0, 0, 0, 4, 0],
-      [0, 0, 4, 6, 0, 2, 9, 0, 0],
-      [0, 5, 0, 0, 0, 3, 0, 2, 8],
-
-      [0, 0, 9, 3, 0, 0, 0, 7, 4],
-      [0, 4, 0, 0, 5, 0, 0, 3, 6],
-      [7, 0, 3, 0, 1, 8, 0, 0, 0],
-    ],
-    hard: [
-      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 3, 5, 0, 0, 0],
-      [0, 0, 0, 6, 0, 0, 0, 0, 3],
-
-      [0, 7, 0, 0, 9, 0, 2, 0, 0],
-      [0, 5, 0, 0, 0, 0, 0, 4, 0],
-      [0, 0, 3, 0, 2, 0, 0, 5, 0],
-
-      [9, 0, 0, 0, 0, 4, 0, 0, 0],
-      [0, 0, 0, 1, 8, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ],
-  };
-
-  // Return a copy of the selected puzzle
-  return JSON.parse(JSON.stringify(puzzles[difficulty || "medium"]));
-}
 
 export default useBacktrackingStore;

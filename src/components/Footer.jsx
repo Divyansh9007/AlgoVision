@@ -77,18 +77,16 @@ const Footer = () => {
 
   // Resources links for Footer - add FAQ to the list
   const resourceLinks = [
-    { name: "Sorting Algorithms", path: "/sorting/bubble" },
     { name: "Searching Algorithms", path: "/searching/linear" },
     { name: "Graph Algorithms", path: "/graph/bfs" },
-    { name: "Dynamic Programming", path: "/dynamic-programming/fibonacci" },
-    { name: "Greedy Algorithms", path: "/greedy-algorithm/activity-selection" },
+
     { name: "Backtracking", path: "/backtracking/n-queens" },
-    { name: "Tree Algorithms", path: "/tree-algorithms/binary-search-tree" },
+
     {
       name: "Mathematical Algorithms",
       path: "/mathematical-algorithms/gcd-euclidean",
     },
-    { name: "Race Mode", path: "/race-mode" },
+
     { name: "FAQ", path: "/faq" },
   ];
 

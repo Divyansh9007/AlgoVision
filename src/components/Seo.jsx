@@ -10,9 +10,9 @@ const Seo = ({ title, description, keywords, image }) => {
   // Default values
   const defaultTitle = "Algorithm Arena - Interactive Algorithm Visualization";
   const defaultDescription =
-    "Visualize and learn algorithms through interactive animations. Compare algorithm performance in real-time with our unique Race Mode.";
+    "Visualize and learn algorithms through interactive animations. Compare algorithm performance in real-time";
   const defaultKeywords =
-    "algorithms, data structures, visualization, sorting, searching, graphs, educational tool";
+    "algorithms, data structures, visualization, sorting, searching, educational tool";
   const defaultImage = "/og-image.png";
 
   // Use provided values or defaults

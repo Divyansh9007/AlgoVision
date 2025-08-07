@@ -11,22 +11,6 @@ import { motion } from "motion/react";
 import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
 
 // Define SVG icon components outside of the main component
-const SortIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-    />
-  </svg>
-);
 
 const SearchIcon = () => (
   <svg
@@ -41,23 +25,6 @@ const SearchIcon = () => (
       strokeLinejoin="round"
       strokeWidth={2}
       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-    />
-  </svg>
-);
-
-const GraphIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
     />
   </svg>
 );
@@ -79,40 +46,6 @@ const DPIcon = () => (
   </svg>
 );
 
-const RaceIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M13 10V3L4 14h7v7l9-11h-7z"
-    />
-  </svg>
-);
-
-const GreedyIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-    />
-  </svg>
-);
-
 const BacktrackingIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -127,26 +60,6 @@ const BacktrackingIcon = () => (
       strokeWidth={2}
       d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"
     />
-  </svg>
-);
-
-const TreeIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-6 h-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <circle cx="12" cy="5" r="2" strokeWidth="2" />
-    <circle cx="6" cy="12" r="2" strokeWidth="2" />
-    <circle cx="18" cy="12" r="2" strokeWidth="2" />
-    <circle cx="6" cy="19" r="2" strokeWidth="2" />
-    <circle cx="18" cy="19" r="2" strokeWidth="2" />
-    <line x1="12" y1="7" x2="6" y2="10" strokeWidth="2" />
-    <line x1="12" y1="7" x2="18" y2="10" strokeWidth="2" />
-    <line x1="6" y1="14" x2="6" y2="17" strokeWidth="2" />
-    <line x1="18" y1="14" x2="18" y2="17" strokeWidth="2" />
   </svg>
 );
 
@@ -305,17 +218,7 @@ AlgorithmCategory.propTypes = {
 const Home = () => {
   const navigate = useNavigate();
 
-  const handleRaceModeClick = () => {
-    navigate("/race-mode");
-  };
-
   // Sample algorithms for each category
-  const sortingAlgorithms = [
-    { id: "bubble", name: "Bubble Sort" },
-    { id: "merge", name: "Merge Sort" },
-    { id: "quick", name: "Quick Sort" },
-    { id: "heap", name: "Heap Sort" },
-  ];
 
   const searchingAlgorithms = [
     { id: "linear", name: "Linear Search" },
@@ -324,53 +227,15 @@ const Home = () => {
     { id: "interpolation", name: "Interpolation Search" },
   ];
 
-  const graphAlgorithms = [
-    { id: "bfs", name: "Breadth First Search" },
-    { id: "dfs", name: "Depth First Search" },
-    { id: "dijkstra", name: "Dijkstra's Algorithm" },
-    { id: "kruskal", name: "Kruskal's Algorithm" },
-  ];
-
-  const dpAlgorithms = [
-    { id: "fibonacci", name: "Fibonacci Sequence" },
-    { id: "knapsack", name: "0/1 Knapsack" },
-    { id: "lcs", name: "Longest Common Subsequence" },
-    { id: "edit-distance", name: "Edit Distance" },
-  ];
-
-  const greedyAlgorithms = [
-    { id: "activity-selection", name: "Activity Selection" },
-    { id: "huffman-coding", name: "Huffman Coding" },
-  ];
-
-  const backtrackingAlgorithms = [
-    { id: "n-queens", name: "N-Queens" },
-    { id: "sudoku-solver", name: "Sudoku Solver" },
-  ];
-
-  const treeAlgorithms = [
-    { id: "tree-traversals", name: "Tree Traversals" },
-    { id: "binary-search-tree", name: "Binary Search Tree" },
-    { id: "avl-tree", name: "AVL Tree" },
-    { id: "red-black-tree", name: "Red-Black Tree" },
-  ];
+  const backtrackingAlgorithms = [{ id: "n-queens", name: "N-Queens" }];
 
   const mathAlgorithms = [
     { id: "gcd-euclidean", name: "GCD (Euclidean)" },
-    { id: "sieve-of-eratosthenes", name: "Sieve of Eratosthenes" },
+
     { id: "prime-factorization", name: "Prime Factorization" },
   ];
 
   const categories = [
-    {
-      title: "Sorting Algorithms",
-      description:
-        "Visualize and learn how different sorting algorithms work and compare their efficiencies.",
-      icon: <SortIcon />,
-      path: "/sorting/:algorithm",
-      color: "#4C1D95",
-      algorithms: sortingAlgorithms,
-    },
     {
       title: "Searching Algorithms",
       description:
@@ -380,33 +245,7 @@ const Home = () => {
       color: "#065F46",
       algorithms: searchingAlgorithms,
     },
-    {
-      title: "Graph Algorithms",
-      description:
-        "Understand the fundamental algorithms used in graph theory.",
-      icon: <GraphIcon />,
-      path: "/graph/:algorithm",
-      color: "#1E40AF",
-      algorithms: graphAlgorithms,
-    },
-    {
-      title: "Dynamic Programming",
-      description:
-        "Learn optimization techniques by breaking problems down into simpler subproblems.",
-      icon: <DPIcon />,
-      path: "/dynamic-programming/:algorithm",
-      color: "#9D174D",
-      algorithms: dpAlgorithms,
-    },
-    {
-      title: "Greedy Algorithms",
-      description:
-        "Learn optimization algorithms that make locally optimal choices at each step to find a global optimum.",
-      icon: <GreedyIcon />,
-      path: "/greedy-algorithm/:algorithm",
-      color: "#166534",
-      algorithms: greedyAlgorithms,
-    },
+
     {
       title: "Backtracking",
       description:
@@ -416,15 +255,7 @@ const Home = () => {
       color: "#7E22CE",
       algorithms: backtrackingAlgorithms,
     },
-    {
-      title: "Tree Algorithms",
-      description:
-        "Discover algorithms that create, traverse and manipulate hierarchical tree data structures.",
-      icon: <TreeIcon />,
-      path: "/tree-algorithms/:algorithm",
-      color: "#0E7490",
-      algorithms: treeAlgorithms,
-    },
+
     {
       title: "Mathematical Algorithms",
       description:
@@ -434,15 +265,6 @@ const Home = () => {
       color: "#C2410C",
       algorithms: mathAlgorithms,
     },
-    {
-      title: "Race Mode",
-      description:
-        "Compare different algorithms head-to-head in an interactive race visualization.",
-      icon: <RaceIcon />,
-      path: "/race-mode",
-      color: "#B45309",
-      algorithms: [],
-    },
   ];
 
   return (
@@ -450,7 +272,7 @@ const Home = () => {
       <Seo
         title="Algorithm Visualization Platform"
         description="Interactive platform to visualize and learn algorithms through animations. Compare algorithm performances in real-time with Race Mode."
-        keywords="algorithm visualization, sorting algorithms, searching algorithms, data structures, algorithm race"
+        keywords="algorithm visualization, searching algorithms, data structures "
       />
 
       <WavyBackground
@@ -480,31 +302,6 @@ const Home = () => {
           />
 
           {/* Static button without motion animations */}
-          <div className="flex mt-8 space-x-4">
-            <HoverBorderGradient
-              onClick={handleRaceModeClick}
-              containerClassName="rounded-full"
-              className="flex items-center space-x-3 text-base text-white dark:bg-slate-800/95 bg-slate-900/95 md:text-lg"
-              duration={1.5}
-              id="race"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-6 h-6 text-blue-500"
-              >
-                <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
-              </svg>
-              <span>Try Race Mode</span>
-            </HoverBorderGradient>
-          </div>
         </div>
 
         {/* Fixed scroll-based animations for algorithm category cards with reduced vertical gaps */}
