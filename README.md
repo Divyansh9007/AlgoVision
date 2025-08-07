@@ -30,8 +30,8 @@ This section demonstrates popular searching algorithms such as **Linear Search**
 
 ### Screenshot
 
-![Search Algorithms Screenshot](./ss/linear)
-![Search Algorithms Screenshot](./ss/linear2)
+![Search Algorithms Screenshot](./ss/linear.png)
+![Search Algorithms Screenshot](./ss/linear2.png)
 
 ---
 
@@ -51,8 +51,8 @@ This section focuses on **Backtracking Algorithms**, specifically the **N-Queens
 
 ### Screenshot
 
-![Backtracking N-Queens Screenshot](./ss/nqueen1.png)
-![Backtracking N-Queens Screenshot](./ss/nqueen.png)
+![Backtracking N-Queens Screenshot](./ss/nqueens1.png)
+![Backtracking N-Queens Screenshot](./ss/nqueens.png)
 ---
 
 ## Mathematical Algorithms
@@ -87,7 +87,4 @@ This section covers foundational mathematical algorithms such as:
 
 ---
 
-## Installation
-
-1. Clone the repository:
 
