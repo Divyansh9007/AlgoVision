@@ -4,7 +4,7 @@ import PropTypes from "prop-types"; // Add PropTypes import
 
 const Seo = ({ title, description, keywords, image }) => {
   const location = useLocation();
-  const baseUrl = "https://coder-army-algo-arena.vercel.app";
+  const baseUrl = "https://algo-vision-flax.vercel.app/";
   const url = `${baseUrl}${location.pathname}`;
 
   // Default values

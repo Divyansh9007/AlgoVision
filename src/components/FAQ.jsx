@@ -30,12 +30,6 @@ const FAQ = () => {
       answer:
         "Yes! Algorithm Arena is designed to be educational for all levels. Beginners can learn visually how algorithms work, while advanced users can compare performance characteristics and analyze algorithmic complexity.",
     },
-    {
-      id: "contributions",
-      question: "Can I contribute to the project?",
-      answer:
-        "Absolutely! The project is open source, and we welcome contributions. You can fork the repository, create a feature branch, and submit a pull request with your improvements.",
-    },
   ];
 
   const faqSchema = {
